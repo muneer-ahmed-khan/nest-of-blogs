@@ -5,7 +5,7 @@
     <div class="container mx-auto px-6 py-5">
       <div class="flex items-center justify-between">
         <div class="flex">
-          <NuxtLink to="/">
+          <NuxtLink to="#">
             <div
               class="flex items-center hover:text-indigo-600 text-gray-800 dark:text-gray-50"
             >
@@ -32,7 +32,7 @@
             >
               <li v-for="topic in topics" :key="topic" class="cursor-pointer">
                 <NuxtLink
-                  :to="`/topic/${topic}`"
+                  :to="`#`"
                   class="rounded-xl bg-white dark:bg-customBlue text-gray-800 dark:text-gray-50 py-2 px-4 block whitespace-no-wrap"
                 >
                   {{ topic }}
@@ -58,7 +58,7 @@
           </button>
 
           <NuxtLink
-            to="/about"
+            to="#"
             class="flex items-center mx-2 lg:mx-4 text-base text-gray-800 hover:text-indigo-600 dark:text-gray-50"
           >
             <Icon name="gg:profile" class="text-lg" />
@@ -93,7 +93,7 @@ import { ref } from "vue";
 
 // Reactive variables
 const isColorModeResolved = ref(false);
-const topics = ref(["Technology", "Science", "Health"]); // Replace with dynamic topics
+const topics = ref(["Technology", "Science", "Health"]);
 const isLogin = ref(false);
 
 const toggleTheme = () => {

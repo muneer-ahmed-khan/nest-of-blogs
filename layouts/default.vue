@@ -2,6 +2,9 @@
 
 <template>
   <div class="min-h-screen relative bg-white dark:bg-gray-900">
-    <Navbar /> <slot />
+    <Navbar />
+    <Header />
+    <NuxtPage />
+    <Footer />
   </div>
 </template>
