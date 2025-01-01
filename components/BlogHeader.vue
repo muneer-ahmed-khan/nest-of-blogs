@@ -59,9 +59,6 @@ defineProps({
   data: {
     type: Object,
   },
-  content: {
-    type: String,
-  },
   readTime: {
     type: String,
   },

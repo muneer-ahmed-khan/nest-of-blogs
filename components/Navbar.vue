@@ -1,3 +1,32 @@
+<script setup lang="ts">
+const colorMode = useColorMode();
+
+// get all topics from articles
+const articles = await queryContent().find();
+const topics = new Set(articles.map((article) => article.topic));
+
+// Reactive variables
+const isColorModeResolved = ref(false);
+const isLogin = ref(false);
+
+const toggleTheme = () => {
+  colorMode.value = colorMode.value === "dark" ? "light" : "dark";
+};
+
+const handelSignIn = () => {
+  console.log("Sign In logic here");
+};
+
+const handelSignOut = () => {
+  console.log("Sign Out logic here");
+};
+
+// Ensure colorMode is resolved
+onMounted(() => {
+  isColorModeResolved.value = true;
+});
+</script>
+
 <template>
   <header
     class="fixed w-full border-t-4 bg-white dark:bg-dark border-indigo-600 dark:border-indigo-900 shadow dark:shadow-2 z-50"
@@ -5,7 +34,7 @@
     <div class="container mx-auto px-6 py-5">
       <div class="flex items-center justify-between">
         <div class="flex">
-          <NuxtLink to="#">
+          <NuxtLink to="/">
             <div
               class="flex items-center hover:text-indigo-600 text-gray-800 dark:text-gray-50"
             >
@@ -32,7 +61,7 @@
             >
               <li v-for="topic in topics" :key="topic" class="cursor-pointer">
                 <NuxtLink
-                  :to="`#`"
+                  :to="`/topic/${topic}`"
                   class="rounded-xl bg-white dark:bg-customBlue text-gray-800 dark:text-gray-50 py-2 px-4 block whitespace-no-wrap"
                 >
                   {{ topic }}
@@ -85,33 +114,5 @@
     </div>
   </header>
 </template>
-
-<script setup lang="ts">
-const colorMode = useColorMode();
-
-import { ref } from "vue";
-
-// Reactive variables
-const isColorModeResolved = ref(false);
-const topics = ref(["Technology", "Science", "Health"]);
-const isLogin = ref(false);
-
-const toggleTheme = () => {
-  colorMode.value = colorMode.value === "dark" ? "light" : "dark";
-};
-
-const handelSignIn = () => {
-  console.log("Sign In logic here");
-};
-
-const handelSignOut = () => {
-  console.log("Sign Out logic here");
-};
-
-// Ensure colorMode is resolved
-onMounted(() => {
-  isColorModeResolved.value = true;
-});
-</script>
 
 <style scoped></style>
