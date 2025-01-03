@@ -12,6 +12,12 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
 
+  content: {
+    markdown: {
+      anchorLinks: false,
+    },
+  },
+
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     configPath: "tailwind.config",

@@ -1,5 +1,9 @@
 <template>
-  <NuxtLayout> </NuxtLayout>
+  <div class="min-h-screen relative bg-white dark:bg-gray-900">
+    <Navbar />
+    <NuxtPage />
+    <Footer />
+  </div>
 </template>
 
 <script></script>

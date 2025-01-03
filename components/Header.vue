@@ -1,3 +1,21 @@
+<script setup lang="ts">
+// Props passed to the component
+defineProps({
+  topic: {
+    type: Boolean,
+    required: false,
+  },
+  topicName: {
+    type: String,
+    default: "",
+  },
+  topicCount: {
+    type: Number,
+    default: 0,
+  },
+});
+</script>
+
 <template>
   <div>
     <div v-if="topic" class="pt-24 px-12 mx-auto max-w-7xl">
@@ -7,7 +25,7 @@
         <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200">
           {{ topicName }}
         </h3>
-        <h4 class="text-xl">{{ topicCount }} Articles</h4>
+        <h4 class="text-xl dark:text-white">{{ topicCount }} Articles</h4>
       </div>
     </div>
 
@@ -33,21 +51,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-// Props passed to the component
-defineProps({
-  topic: {
-    type: Boolean,
-    required: false,
-  },
-  topicName: {
-    type: String,
-    default: "",
-  },
-  topicCount: {
-    type: Number,
-    default: 0,
-  },
-});
-</script>

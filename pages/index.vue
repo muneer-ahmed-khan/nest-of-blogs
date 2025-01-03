@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import { calculateReadTime } from "~/utils";
+import { useArticles } from "~/composables/useArticles";
 
-const contentQuery = await queryContent().find();
-
-contentQuery.forEach((article) => {
-  article.readingTime = calculateReadTime(article.body);
-});
+// Setup
+const { articles, error, fetchArticles } = useArticles();
+await fetchArticles();
 </script>
 
 <template>
   <Header />
   <div class="px-0.5 md:px-7 pb-14 pt-6 mx-auto">
     <div class="flex flex-wrap">
-      <BlogHeader
-        v-for="(content, index) in contentQuery"
-        :data="content"
-        :readTime="content.readingTime"
-      />
+      <BlogHeader :articles="articles" />
     </div>
   </div>
 </template>
