@@ -16,6 +16,8 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.9.0",
     "@tailwindcss/typography": "^0.5.15",
+    "firebase": "^11.1.0",
+    "firebase-admin": "^13.0.2",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
     "vue": "latest",

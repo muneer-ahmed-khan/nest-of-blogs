@@ -4,9 +4,10 @@ import { defineStore } from "pinia";
 // Define the type for the state
 interface State {
   user: {
-    id: string | null;
     name: string | null;
-    email: string | null;
+    photo: string | null;
+    token: string | null;
+    uid: string | null;
   } | null;
 }
 
@@ -18,7 +19,12 @@ export const useUserStore = defineStore("user", {
 
   // Define mutations (Pinia uses actions instead of mutations)
   actions: {
-    setUser(user: { id: string; name: string; email: string }) {
+    setUser(user: {
+      name: string | null;
+      photo: string | null;
+      token: string | null;
+      uid: string | null;
+    }) {
       this.user = user;
     },
 

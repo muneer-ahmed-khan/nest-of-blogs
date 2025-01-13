@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { signInWithPopup, signOut } from "firebase/auth";
+import { useUserStore } from "~/store";
+const { $auth, $provider } = useNuxtApp();
+
 const colorMode = useColorMode();
+
+// Pinia store instance
+const userStore = useUserStore();
 
 // get all topics from articles
 const articles = await queryContent().find();
@@ -8,26 +15,79 @@ const topics = new Set(articles.map((article) => article.topic));
 // Reactive variables
 const isColorModeResolved = ref(false);
 const isLogin = ref(false);
+const viewAlert = ref(false);
+const alertMessage = ref("");
+const type = ref("");
 
 const toggleTheme = () => {
   colorMode.value = colorMode.value === "dark" ? "light" : "dark";
 };
 
-const handelSignIn = () => {
-  console.log("Sign In logic here");
+// Sign in logic
+const handelSignIn = async () => {
+  try {
+    const res = await signInWithPopup($auth, $provider);
+    const userObj = {
+      name: res.user.displayName,
+      photo: res.user.photoURL,
+      token: (res.user as any).accessToken,
+      uid: res.user.uid,
+    };
+
+    // Save user to Pinia store
+    localStorage.setItem("user", JSON.stringify(userObj));
+    userStore.setUser(userObj);
+
+    isLogin.value = true;
+
+    type.value = "success";
+    alertMessage.value = `Hello ${res.user.displayName}`;
+    viewAlert.value = true;
+    setTimeout(() => {
+      viewAlert.value = false;
+    }, 2000);
+  } catch (err) {
+    console.error("Error signing in:", err);
+
+    type.value = "failed";
+    alertMessage.value = `Failed to login`;
+    viewAlert.value = true;
+    setTimeout(() => {
+      viewAlert.value = false;
+    }, 2000);
+  }
 };
 
+// Sign out logic
 const handelSignOut = () => {
-  console.log("Sign Out logic here");
-};
+  try {
+    signOut($auth);
+    localStorage.removeItem("user");
+    userStore.clearUser();
 
-// Ensure colorMode is resolved
-onMounted(() => {
-  isColorModeResolved.value = true;
-});
+    isLogin.value = false;
+
+    alertMessage.value = "Hope to see you again !!";
+    viewAlert.value = true;
+    type.value = "success";
+    setTimeout(() => {
+      viewAlert.value = false;
+    }, 2000);
+  } catch (err) {
+    console.error("Error signin out:", err);
+
+    type.value = "failed";
+    alertMessage.value = `Failed to signout`;
+    viewAlert.value = true;
+    setTimeout(() => {
+      viewAlert.value = false;
+    }, 2000);
+  }
+};
 </script>
 
 <template>
+  <Alert :show="viewAlert" :type="type" :message="alertMessage" />
   <header
     class="fixed w-full border-t-4 bg-white dark:bg-dark border-indigo-600 dark:border-indigo-900 shadow dark:shadow-2 z-50"
   >
@@ -102,7 +162,7 @@ onMounted(() => {
               @click="handelSignOut"
             >
               <span class="hidden md:block text-sm font-medium">Sign Out</span>
-              <!-- <IoLogOutOutline class="text-xl mx-1" /> -->
+              <Icon name="mdi:logout" class="mx-1 mt-1" size="16" />
             </span>
             <span v-else class="md:flex items-center" @click="handelSignIn">
               <span class="hidden md:block text-sm font-medium">Sign In</span>
