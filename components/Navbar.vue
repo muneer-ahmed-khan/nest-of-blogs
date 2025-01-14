@@ -84,6 +84,10 @@ const handelSignOut = () => {
     }, 2000);
   }
 };
+
+onMounted(() => {
+  isColorModeResolved.value = true;
+});
 </script>
 
 <template>

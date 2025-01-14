@@ -17,6 +17,8 @@ const article = articles.value?.[0];
     <!-- Page Content -->
     <div class="py-24">
       <BlogInner :article="article" />
+      <LikeBtn :id="article?.title?.split(' ')?.join('-')?.toLowerCase()" />
+      <BlogShare :article="article" />
     </div>
   </div>
 </template>
