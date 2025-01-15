@@ -9,7 +9,7 @@ const { data, refresh } = await useFetch(`/api/likes/${props.id}`);
 const handleClick = async () => {
   loading.value = true;
 
-  const response = await $fetch("/api/like-blog", {
+  const response = await $fetch("/api/likes/like-blog", {
     method: "POST",
     body: JSON.stringify({ id: props.id }),
     headers: {
@@ -37,7 +37,7 @@ const handleClick = async () => {
     <div v-else class="flex items-center justify-center">
       <button @click="handleClick" :disabled="loading">
         <Icon
-          v-if="data?.hasUserLiked"
+          v-if="data && 'hasUserLiked' in data && data.hasUserLiked"
           name="mdi:heart"
           style="font-size: 2rem; color: rgba(220, 38, 38)"
         />
@@ -48,7 +48,11 @@ const handleClick = async () => {
           class="dark:text-white"
         />
       </button>
-      <span style="font-size: 1rem; padding-left: 16px" class="dark:text-white">
+      <span
+        style="font-size: 1rem; padding-left: 16px"
+        class="dark:text-white"
+        v-if="data && 'totalLikes' in data"
+      >
         {{ data?.totalLikes }}
       </span>
     </div>

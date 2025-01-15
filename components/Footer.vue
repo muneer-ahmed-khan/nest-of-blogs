@@ -1,3 +1,7 @@
+<script setup>
+const year = new Date().getFullYear();
+</script>
+
 <template>
   <footer class="absolute w-full -bottom-0">
     <div class="bg-indigo-600 dark:bg-indigo-900">
@@ -55,7 +59,3 @@
     </div>
   </footer>
 </template>
-
-<script setup>
-const year = new Date().getFullYear();
-</script>

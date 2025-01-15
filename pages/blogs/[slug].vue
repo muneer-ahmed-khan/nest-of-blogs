@@ -19,6 +19,7 @@ const article = articles.value?.[0];
       <BlogInner :article="article" />
       <LikeBtn :id="article?.title?.split(' ')?.join('-')?.toLowerCase()" />
       <BlogShare :article="article" />
+      <Comments :id="article?.title?.split(' ')?.join('-')?.toLowerCase()" />
     </div>
   </div>
 </template>
