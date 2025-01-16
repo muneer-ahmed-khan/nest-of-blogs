@@ -1,33 +1,30 @@
 // store/index.ts
 import { defineStore } from "pinia";
 
-// Define the type for the state
-interface State {
-  user: {
-    name: string | null;
-    photo: string | null;
-    token: string | null;
-    uid: string | null;
-  } | null;
+interface User {
+  name: string | null;
+  photo: string | null;
+  token: string | null;
+  uid: string | null;
 }
 
-// Define your store using Pinia (Nuxt 3 uses Pinia by default)
+interface State {
+  user: User | null;
+}
+
 export const useUserStore = defineStore("user", {
   state: (): State => ({
-    user: null, // Initial state, no user data
+    user: null,
   }),
 
-  // Define mutations (Pinia uses actions instead of mutations)
+  getters: {
+    isLoggedIn: (state) => !!state.user,
+  },
+
   actions: {
-    setUser(user: {
-      name: string | null;
-      photo: string | null;
-      token: string | null;
-      uid: string | null;
-    }) {
+    setUser(user: User) {
       this.user = user;
     },
-
     clearUser() {
       this.user = null;
     },

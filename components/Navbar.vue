@@ -4,8 +4,6 @@ import { useUserStore } from "~/store";
 const { $auth, $provider } = useNuxtApp();
 
 const colorMode = useColorMode();
-
-// Pinia store instance
 const userStore = useUserStore();
 
 // get all topics from articles
@@ -23,6 +21,14 @@ const toggleTheme = () => {
   colorMode.value = colorMode.value === "dark" ? "light" : "dark";
 };
 
+// Reusable alert function
+const showAlert = (message: string, alertType: "success" | "failed") => {
+  alertMessage.value = message;
+  type.value = alertType;
+  viewAlert.value = true;
+  setTimeout(() => (viewAlert.value = false), 2000);
+};
+
 // Sign in logic
 const handelSignIn = async () => {
   try {
@@ -34,59 +40,47 @@ const handelSignIn = async () => {
       uid: res.user.uid,
     };
 
-    // Save user to Pinia store
     localStorage.setItem("user", JSON.stringify(userObj));
     userStore.setUser(userObj);
 
     isLogin.value = true;
-
-    type.value = "success";
-    alertMessage.value = `Hello ${res.user.displayName}`;
-    viewAlert.value = true;
-    setTimeout(() => {
-      viewAlert.value = false;
-    }, 2000);
+    showAlert(`Hello ${res.user.displayName}`, "success");
   } catch (err) {
     console.error("Error signing in:", err);
-
-    type.value = "failed";
-    alertMessage.value = `Failed to login`;
-    viewAlert.value = true;
-    setTimeout(() => {
-      viewAlert.value = false;
-    }, 2000);
+    showAlert("Failed to login", "failed");
   }
 };
 
 // Sign out logic
-const handelSignOut = () => {
+const handelSignOut = async () => {
   try {
-    signOut($auth);
+    await signOut($auth);
     localStorage.removeItem("user");
     userStore.clearUser();
 
     isLogin.value = false;
-
-    alertMessage.value = "Hope to see you again !!";
-    viewAlert.value = true;
-    type.value = "success";
-    setTimeout(() => {
-      viewAlert.value = false;
-    }, 2000);
+    showAlert("Hope to see you again !!", "success");
   } catch (err) {
-    console.error("Error signin out:", err);
-
-    type.value = "failed";
-    alertMessage.value = `Failed to signout`;
-    viewAlert.value = true;
-    setTimeout(() => {
-      viewAlert.value = false;
-    }, 2000);
+    console.error("Error signing out:", err);
+    showAlert("Failed to sign out", "failed");
   }
 };
 
+// Initialize user on page load
 onMounted(() => {
   isColorModeResolved.value = true;
+
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    try {
+      const parsedUser = JSON.parse(storedUser);
+      userStore.setUser(parsedUser);
+      isLogin.value = true;
+    } catch (err) {
+      console.error("Error parsing user from localStorage:", err);
+      localStorage.removeItem("user");
+    }
+  }
 });
 </script>
 

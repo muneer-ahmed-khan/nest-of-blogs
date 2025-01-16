@@ -9,10 +9,19 @@ const props = defineProps<Props>();
 
 // Reactive state
 const comment = ref<string>("");
-const comments = ref<any[]>([]);
+const comments = ref<
+  Array<{
+    id: string;
+    userName: string;
+    userImage: string;
+    userId: string;
+    date: string;
+    comment: string;
+  }>
+>([]);
 const viewAlert = ref<boolean>(false);
 const alertMessage = ref<string>("");
-const alertType = ref<string>("");
+const alertType = ref<"success" | "error">("success");
 const textAreaHeight = ref<number>(100);
 
 // Pinia store
@@ -20,7 +29,7 @@ const userStore = useUserStore();
 const user = computed(() => userStore.user);
 
 // Utility functions
-const showAlert = (message: string, type: string): void => {
+const showAlert = (message: string, type: "success" | "error"): void => {
   alertMessage.value = message;
   alertType.value = type;
   viewAlert.value = true;
@@ -32,7 +41,7 @@ const showAlert = (message: string, type: string): void => {
 
 const adjustTextareaHeight = (event: Event): void => {
   const target = event.target as HTMLTextAreaElement;
-  textAreaHeight.value = target.scrollHeight > 100 ? target.scrollHeight : 100;
+  textAreaHeight.value = Math.max(target.scrollHeight, 100);
 };
 
 // Fetch comments dynamically
@@ -68,7 +77,7 @@ const handlePost = async (): Promise<void> => {
           postId: props.id,
           userName: currentUser.name,
           userImage: currentUser.photo,
-          comment: comment.value,
+          comment: comment.value.trim(),
           userId: currentUser.uid,
         },
       });
@@ -95,12 +104,11 @@ const handleDeleteComment = async (commentId: string): Promise<void> => {
   const currentUser = useCheckAuth();
 
   if (!currentUser) {
-    showAlert("Please SignIn to comment", "error");
+    showAlert("Please SignIn to delete comments", "error");
     return;
   }
 
   try {
-    // Call the server-side API
     const response: any = await $fetch("/api/comments/delete-comment", {
       method: "DELETE",
       body: {
@@ -110,7 +118,6 @@ const handleDeleteComment = async (commentId: string): Promise<void> => {
     });
 
     if (response.status === 200) {
-      // Refresh comments after deletion
       await fetchComments();
       showAlert("Comment deleted successfully.", "success");
     } else {
@@ -207,5 +214,5 @@ const handleDeleteComment = async (commentId: string): Promise<void> => {
 </template>
 
 <style scoped>
-/* Add any additional styles if necessary */
+/* Add additional styles if needed */
 </style>
