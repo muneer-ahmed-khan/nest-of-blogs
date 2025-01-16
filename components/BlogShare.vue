@@ -9,7 +9,7 @@ const props = defineProps({
 // Generate the LinkedIn share URL dynamically based on the data props
 const linkedinShareUrl = computed(
   () =>
-    `https://www.linkedin.com/shareArticle?mini=true&url=nest-of-code.vercel.app/blogs/${props.article.title
+    `https://www.linkedin.com/shareArticle?mini=true&url=nest-of-blogs.vercel.app/blogs/${props.article.title
       .split(" ")
       .join("-")
       .toLowerCase()}&title=${encodeURIComponent(props.article.title)}`
