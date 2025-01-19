@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <div class="max-w-2xl pt-20 pb-32 px-6 text-center mx-auto">
     <div class="h-64 w-full justify-center flex">

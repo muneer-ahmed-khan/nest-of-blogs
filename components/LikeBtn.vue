@@ -39,18 +39,16 @@ const handleClick = async () => {
         <Icon
           v-if="data && 'hasUserLiked' in data && data.hasUserLiked"
           name="mdi:heart"
-          style="font-size: 2rem; color: rgba(220, 38, 38)"
+          class="text-4xl text-red-600"
         />
         <Icon
           v-else
           name="mdi:heart-outline"
-          style="font-size: 2rem"
-          class="dark:text-white"
+          class="dark:text-white text-4xl"
         />
       </button>
       <span
-        style="font-size: 1rem; padding-left: 16px"
-        class="dark:text-white"
+        class="dark:text-white text-2xl pl-1 pb-1"
         v-if="data && 'totalLikes' in data"
       >
         {{ data?.totalLikes }}
@@ -58,7 +56,3 @@ const handleClick = async () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Add custom styles here */
-</style>

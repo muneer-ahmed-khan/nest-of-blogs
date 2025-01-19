@@ -212,7 +212,3 @@ const handleDeleteComment = async (commentId: string): Promise<void> => {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Add additional styles if needed */
-</style>

@@ -30,5 +30,3 @@ const alertClass = computed(() =>
     </div>
   </div>
 </template>
-
-<style scoped></style>
