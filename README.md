@@ -1,6 +1,6 @@
 # Nest of Blogs
 
-Nest of Blogs is a dynamic blogging platform built using Nuxt.js, designed to provide an intuitive user experience for reading and managing blog posts. The platform leverages modern web technologies for a responsive, fast, and scalable application.
+Nest of Blogs is a dynamic blogging platform built using Nuxt.js, designed to provide an intuitive user experience for reading blog posts. The platform leverages modern web technologies for a responsive, fast, and scalable application.
 
 ## Features
 
@@ -22,6 +22,34 @@ The project utilizes the following technologies and tools:
 - **Markdown**: Content written in markdown is seamlessly rendered into HTML.
 - **Firebase**: Used for authentication, comments, and likes functionality.
 - **Vercel**: Deployed using Vercel for fast, reliable hosting.
+
+## Environment Variables
+
+To run this project locally, you will need to set up Firebase configuration and other environment variables. Here's how you can do that:
+
+1. Create a `.env` file in the root of the project.
+
+2. Add the following environment variables to your `.env` file:
+
+```plaintext
+# Public Variables (Accessible on Client-Side)
+NUXT_PUBLIC_FIREBASE_API_KEY=<your-firebase-api-key>
+NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<your-firebase-auth-domain>
+NUXT_PUBLIC_FIREBASE_PROJECT_ID=<your-firebase-project-id>
+NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<your-firebase-storage-bucket>
+NUXT_PUBLIC_FIREBASE_SENDER_ID=<your-firebase-sender-id>
+NUXT_PUBLIC_FIREBASE_APP_ID=<your-firebase-app-id>
+NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID=<your-firebase-measurement-id>
+
+# Private Variables (Server-Side Only)
+FIREBASE_CLIENT_EMAIL=<your-firebase-client-email>
+FIREBASE_PRIVATE_KEY=<your-firebase-private-key>
+FIREBASE_PROJECT_ID=<your-firebase-project-id>
+```
+
+3. Replace the placeholder values with your actual Firebase project details.
+
+**Note**: Make sure your `.env` file is **not committed to version control** to keep your private keys secure.
 
 ## Installation
 
@@ -91,5 +119,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-**Author:** Muneer Ahmed Khan  
+**Author:** Muneer Ahmed
+
 Feel free to reach out for any questions or collaboration opportunities!
