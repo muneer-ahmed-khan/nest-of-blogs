@@ -1,3 +1,41 @@
+<script setup lang="ts">
+useSeoMeta({
+  title: "About Muneer - Developer and Technologist",
+  description:
+    "Hi, I’m Muneer. I'm a passionate developer focused on web technologies, backend systems, and innovative solutions. Let's connect!",
+  ogTitle: "About Muneer - Developer and Technologist",
+  ogDescription:
+    "Hi, I’m Muneer. I'm a passionate developer focused on web technologies, backend systems, and innovative solutions. Let's connect!",
+  ogImage:
+    "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/about-seo.png",
+  ogUrl: "https://muneer-ahmed.vercel.app/about",
+  twitterTitle: "About Muneer - Developer and Technologist",
+  twitterDescription:
+    "Hi, I’m Muneer. I'm a passionate developer focused on web technologies, backend systems, and innovative solutions. Let's connect!",
+  twitterImage:
+    "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/about-seo.png",
+  twitterCard: "summary_large_image",
+  robots: "index, follow",
+});
+
+useHead({
+  link: [
+    {
+      rel: "canonical",
+      href: "https://muneer-ahmed.vercel.app/about",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+  htmlAttrs: {
+    lang: "en",
+  },
+});
+</script>
+
 <template>
   <div class="max-w-2xl pt-20 pb-32 px-6 text-center mx-auto">
     <div class="h-64 w-full justify-center flex">
