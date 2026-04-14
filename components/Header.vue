@@ -39,7 +39,7 @@ defineProps({
           </div>
 
           <h1
-            class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight dark:text-white text-gray-900 mb-6 animate-fade-up-2"
+            class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight dark:text-white text-gray-900 mb-6 animate-fade-up-2"
           >
             Code.<br />
             <span
@@ -50,13 +50,13 @@ defineProps({
           </h1>
 
           <p class="text-lg dark:text-gray-400 text-gray-500 max-w-lg leading-relaxed animate-fade-up-3 mx-auto lg:mx-0">
-            Deep dives into Node.js, Express, TypeScript and modern backend development — from fundamentals to production patterns.
+            Practical Node.js, Express, and TypeScript. Written clearly, from first principles to production.
           </p>
 
           <!-- Audience signal -->
           <div class="flex flex-wrap items-center gap-2 mt-5 animate-fade-up-3 justify-center lg:justify-start">
             <span class="font-mono text-xs dark:text-gray-600 text-gray-400">Written for</span>
-            <span v-for="label in ['Junior Devs', 'Senior Engineers', 'Hiring Managers', 'Clients']" :key="label"
+            <span v-for="label in ['Junior Devs', 'Senior Engineers', 'Hiring Managers']" :key="label"
               class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium dark:bg-teal-400/8 bg-teal-600/8 dark:text-teal-400/70 text-teal-600/70 border dark:border-teal-400/15 border-teal-600/15"
             >{{ label }}</span>
           </div>

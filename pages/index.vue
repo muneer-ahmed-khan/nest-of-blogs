@@ -13,14 +13,14 @@ const seriesPreview = computed(() => [
 ].filter(Boolean))
 
 useSeoMeta({
-  title: "muneer.dev — Technical Blog",
-  description: "Deep dives into Node.js, Express, TypeScript and modern backend development.",
-  ogTitle: "muneer.dev — Technical Blog",
-  ogDescription: "Deep dives into Node.js, Express, TypeScript and modern backend development.",
+  title: "muneer.dev | Node.js, Express and TypeScript Blog",
+  description: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
+  ogTitle: "muneer.dev | Node.js, Express and TypeScript Blog",
+  ogDescription: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
   ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
   ogUrl: "https://nest-of-blogs.vercel.app/",
-  twitterTitle: "muneer.dev — Technical Blog",
-  twitterDescription: "Deep dives into Node.js, Express, TypeScript and modern backend development.",
+  twitterTitle: "muneer.dev | Node.js, Express and TypeScript Blog",
+  twitterDescription: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
   twitterImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
   twitterCard: "summary_large_image",
   robots: "index, follow",
@@ -46,7 +46,7 @@ useHead({
         <!-- Section header -->
         <div class="flex items-center justify-between mb-10">
           <div class="flex items-center gap-4">
-            <h2 class="font-heading text-xl font-semibold dark:text-white text-gray-900 flex items-center gap-2">
+            <h2 class="font-heading text-xl font-bold dark:text-white text-gray-900 flex items-center gap-2">
               <Icon name="mdi:github" class="dark:text-teal-400 text-teal-600 text-lg" />
               GitHub Series
             </h2>
@@ -86,12 +86,12 @@ useHead({
                 TypeScript Deep-Dive Series
               </h3>
               <p class="dark:text-gray-400 text-gray-500 text-sm leading-relaxed max-w-lg">
-                {{ SERIES_POSTS.length }} hands-on articles across Node.js and Express — fetched live from my GitHub repos, always up to date with the latest code examples.
+                {{ SERIES_POSTS.length }} articles on Node.js and Express, pulled live from GitHub so the code is always current.
               </p>
               <div class="flex flex-wrap items-center gap-3 mt-5">
                 <NuxtLink to="/series" class="btn-ocean no-underline">
                   <Icon name="mdi:book-open-outline" />
-                  Browse All Series
+                  All Series
                 </NuxtLink>
                 <NuxtLink to="/series?filter=nodejs" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium border dark:border-teal-400/25 border-teal-600/25 dark:text-gray-300 text-gray-600 hover:dark:border-teal-400/50 hover:border-teal-600/50 transition-all duration-200 no-underline">
                   <Icon name="mdi:nodejs" class="dark:text-teal-400 text-teal-600" />
@@ -143,7 +143,7 @@ useHead({
                   {{ post.seriesType === 'nodejs' ? 'Node.js' : 'Express' }} #{{ String(post.seriesNumber).padStart(2,'0') }}
                 </span>
               </div>
-              <h3 class="font-heading text-base font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2">
+              <h3 class="font-heading text-lg font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2">
                 {{ post.title }}
               </h3>
               <p class="text-sm dark:text-gray-400 text-gray-500 leading-relaxed line-clamp-2 mb-4 flex-1">{{ post.excerpt }}</p>

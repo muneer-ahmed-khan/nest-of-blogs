@@ -14,8 +14,8 @@ const featured = computed(() => displayed.value[0])
 const rest      = computed(() => displayed.value.slice(1))
 
 useSeoMeta({
-  title: 'GitHub Series — TypeScript Node.js & Express',
-  description: 'Deep-dive series on TypeScript, Node.js, and Express pulled live from GitHub.',
+  title: 'Article Series | Node.js, Express and TypeScript | muneer.dev',
+  description: 'In-depth article series on Node.js, Express, and TypeScript. Sourced live from GitHub and always up to date.',
 })
 useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
 </script>
@@ -38,7 +38,7 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
           </span>
         </h1>
         <p class="text-lg dark:text-gray-400 text-gray-500 max-w-xl mx-auto leading-relaxed animate-fade-up-3">
-          20 hands-on articles across Node.js and Express — fetched live from GitHub repos, always up to date.
+          {{ SERIES_POSTS.length }} articles on Node.js and Express, always current, pulled live from GitHub.
         </p>
 
         <!-- Stats pills -->
@@ -135,7 +135,7 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
 
       <!-- Section label -->
       <div v-if="rest.length" class="flex items-center gap-4 mb-8">
-        <h2 class="font-heading text-xl font-semibold dark:text-white text-gray-900 flex items-center gap-2">
+        <h2 class="font-heading text-xl font-bold dark:text-white text-gray-900 flex items-center gap-2">
           <Icon name="gridicons:menus" class="dark:text-teal-400 text-teal-600" />
           All {{ activeFilter === 'all' ? 'Series' : (activeFilter === 'nodejs' ? 'Node.js' : 'Express') }} Articles
         </h2>
@@ -166,7 +166,7 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
               </span>
               <span v-for="tag in post.tags.slice(0, 1)" :key="tag" class="tag-pill-amber">{{ tag }}</span>
             </div>
-            <h3 class="font-heading text-base font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2 transition-colors duration-200">
+            <h3 class="font-heading text-lg font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2 transition-colors duration-200">
               {{ post.title }}
             </h3>
             <p class="text-sm dark:text-gray-400 text-gray-500 leading-relaxed line-clamp-3 mb-4 flex-1">{{ post.excerpt }}</p>

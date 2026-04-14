@@ -20,7 +20,7 @@ const topics = [...new Set(articles.map((a: any) => a.topic).filter(Boolean))];
             </span>
           </div>
           <p class="text-xs dark:text-gray-500 text-gray-400 max-w-xs leading-relaxed">
-            Technical blog on Node.js, Express, TypeScript, and modern backend development.
+            Built by a developer, written for developers.
           </p>
         </div>
 

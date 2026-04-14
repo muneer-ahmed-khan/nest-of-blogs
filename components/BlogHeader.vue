@@ -87,7 +87,7 @@ function getTags(article: any): string[] {
 
     <!-- Section heading -->
     <div v-if="rest.length" class="flex items-center gap-4 mb-8">
-      <h2 class="font-heading text-xl font-semibold dark:text-white text-gray-900 flex items-center gap-2">
+      <h2 class="font-heading text-xl font-bold dark:text-white text-gray-900 flex items-center gap-2">
         <Icon name="gridicons:menus" class="text-teal-400 dark:text-teal-400 text-teal-600 text-lg" />
         All Articles
       </h2>
@@ -128,7 +128,7 @@ function getTags(article: any): string[] {
 
           <!-- Title -->
           <h3
-            class="font-heading text-base font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2 group-hover:dark:text-teal-400 group-hover:text-teal-600 transition-colors"
+            class="font-heading text-lg font-semibold dark:text-white text-gray-900 leading-snug mb-2 line-clamp-2 group-hover:dark:text-teal-400 group-hover:text-teal-600 transition-colors"
             style="transition: color 0.2s ease;"
           >{{ (article as any).title }}</h3>
 

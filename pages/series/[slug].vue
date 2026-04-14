@@ -17,7 +17,7 @@ if (!source) {
 }
 
 useSeoMeta({
-  title: source.title + ' — ' + source.seriesLabel,
+  title: source.title + ' | ' + source.seriesLabel,
   description: source.excerpt,
 })
 useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
@@ -127,7 +127,7 @@ function scrollTo(id: string) {
       <div v-else-if="error && !post" class="text-center py-20 px-6">
         <div class="text-6xl mb-6 opacity-40">⚡</div>
         <h2 class="font-heading text-2xl font-bold dark:text-white text-gray-900 mb-3">Couldn't load this post</h2>
-        <p class="dark:text-gray-400 text-gray-500 mb-8">{{ error }} — GitHub may be temporarily unavailable.</p>
+        <p class="dark:text-gray-400 text-gray-500 mb-8">{{ error }}. GitHub may be temporarily unavailable.</p>
         <button
           @click="fetchPostContent(slug).then(r => { if(r) post = r })"
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border dark:border-teal-400/30 border-teal-600/30 dark:text-teal-400 text-teal-600 font-medium transition-all duration-200 hover:dark:bg-teal-400/10 hover:bg-teal-600/8"

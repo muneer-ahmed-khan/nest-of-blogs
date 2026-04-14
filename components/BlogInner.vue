@@ -130,7 +130,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
             {{ article?.author }}
           </p>
           <p class="text-sm dark:text-gray-500 text-gray-400 mb-4">Author</p>
-          <p class="dark:text-gray-400 text-gray-500 text-sm">Thanks for reading! 🚀</p>
+          <p class="dark:text-gray-400 text-gray-500 text-sm">Thanks for reading. If it helped, or if something seems off, feel free to reach out.</p>
         </div>
       </div>
     </div>

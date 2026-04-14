@@ -1,12 +1,12 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "About Muneer — Developer & Technologist",
-  description: "Passionate developer focused on web technologies, backend systems, and innovative solutions.",
-  ogTitle: "About Muneer — Developer & Technologist",
-  ogDescription: "Passionate developer focused on web technologies, backend systems, and innovative solutions.",
+  title: "About Muneer | Backend Developer",
+  description: "Backend developer focused on Node.js, Express, and TypeScript. Writing about real problems, practical solutions, and systems that hold up in production.",
+  ogTitle: "About Muneer | Backend Developer",
+  ogDescription: "Backend developer focused on Node.js, Express, and TypeScript. Writing about real problems, practical solutions, and systems that hold up in production.",
   ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/about-seo.png",
   ogUrl: "https://muneer-ahmed.vercel.app/about",
-  twitterTitle: "About Muneer — Developer & Technologist",
+  twitterTitle: "About Muneer | Backend Developer",
   twitterCard: "summary_large_image",
   robots: "index, follow",
 });
@@ -48,8 +48,7 @@ useHead({
       </h1>
 
       <p class="dark:text-gray-400 text-gray-600 leading-relaxed text-lg max-w-2xl mx-auto animate-fade-up-3">
-        A passionate developer committed to continuously enhancing expertise in web technologies and backend systems.
-        Building innovative, scalable, and efficient systems that solve real-world problems.
+        Backend developer focused on Node.js, Express, and TypeScript. I write about the things I build and the problems I actually run into, so you have a better starting point than I did.
       </p>
 
       <div class="flex justify-center gap-3 pt-8 flex-wrap animate-fade-up-3">
@@ -126,9 +125,9 @@ useHead({
     >
       <div class="absolute top-0 left-0 right-0 h-0.5" style="background: linear-gradient(90deg,#2dd4bf,#fbbf24);"></div>
       <Icon name="mdi:github" class="text-4xl dark:text-teal-400 text-teal-600 mb-3 opacity-60" />
-      <h3 class="font-heading font-bold dark:text-white text-gray-900 mb-2">20 Articles on GitHub Series</h3>
+      <h3 class="font-heading font-bold dark:text-white text-gray-900 mb-2">Articles &amp; Series</h3>
       <p class="text-sm dark:text-gray-400 text-gray-500 mb-5">
-        Deep-dive articles on TypeScript, Node.js, and Express — fetched live from GitHub.
+        Practical writing on Node.js, Express, and TypeScript. Sourced live from GitHub and always up to date.
       </p>
       <NuxtLink to="/series" class="btn-ocean no-underline">
         <Icon name="mdi:book-open-outline" />
