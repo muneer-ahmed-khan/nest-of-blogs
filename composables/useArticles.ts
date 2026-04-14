@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { calculateReadTime } from "~/utils";
+import { calculateReadTime, titleToSlug } from "~/utils";
 
 export function useArticles() {
   const articles = ref<any>([]);
@@ -17,7 +17,7 @@ export function useArticles() {
         // Filter by matching the title-derived slug to find the right article.
         const all = await queryContent().find();
         fetchedArticles = all.filter((a: any) => {
-          const derived = a.title?.split(" ").join("-").toLowerCase();
+          const derived = titleToSlug(a.title ?? "");
           return derived === slug;
         });
       } else {

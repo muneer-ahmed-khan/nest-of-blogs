@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { titleToSlug } from "~/utils";
+
 const props = defineProps({
   articles: { type: Array, default: () => [] },
 });
@@ -7,7 +9,7 @@ const featured  = computed(() => (props.articles as any[])[0]);
 const rest       = computed(() => (props.articles as any[]).slice(1));
 
 function getSlug(article: any) {
-  return article?.title?.split(" ")?.join("-")?.toLowerCase();
+  return titleToSlug(article?.title ?? "");
 }
 
 function getTags(article: any): string[] {

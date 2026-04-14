@@ -1,3 +1,6 @@
+export const titleToSlug = (title: string): string =>
+  title.replace(/[^\w\s-]/g, "").trim().split(/\s+/).join("-").toLowerCase();
+
 export const calculateReadTime = (body: any): string => {
   const wordsPerMinute = 190;
   let wordCount = 0;

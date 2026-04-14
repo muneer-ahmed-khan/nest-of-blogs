@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { titleToSlug } from "~/utils";
+
 const props = defineProps({
   article: { type: Object, required: true },
 });
 
-const articleSlug = computed(() =>
-  props.article.title?.split(" ").join("-").toLowerCase()
-);
+const articleSlug = computed(() => titleToSlug(props.article.title ?? ""));
 
 const linkedinUrl = computed(
   () => `https://www.linkedin.com/shareArticle?mini=true&url=https://nest-of-blogs.vercel.app/blogs/${articleSlug.value}&title=${encodeURIComponent(props.article.title)}`
