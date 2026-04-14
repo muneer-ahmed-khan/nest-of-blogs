@@ -4,6 +4,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
+  nitro: {
+    preset: "github-pages",
+  },
+
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
