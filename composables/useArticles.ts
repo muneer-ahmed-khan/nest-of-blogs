@@ -13,14 +13,17 @@ export function useArticles() {
           .where({ topic, isPublished: true })
           .find();
       } else if (slug) {
-        const searchPattern = slug.split("-").join(" ");
-        const regex = new RegExp(`^${searchPattern}$`, "i");
-
-        fetchedArticles = await queryContent()
-          .where({ title: { $regex: regex } })
-          .find();
+        // Content files use BL-XXXX names but URLs are derived from titles.
+        // Filter by matching the title-derived slug to find the right article.
+        const all = await queryContent().find();
+        fetchedArticles = all.filter((a: any) => {
+          const derived = a.title?.split(" ").join("-").toLowerCase();
+          return derived === slug;
+        });
       } else {
-        fetchedArticles = await queryContent().find();
+        fetchedArticles = await queryContent()
+          .where({ isPublished: true })
+          .find();
       }
 
       articles.value = fetchedArticles.map(({ body, ...article }) => {

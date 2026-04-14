@@ -1,7 +1,9 @@
 <template>
-  <div class="min-h-screen relative bg-white dark:bg-gray-900">
+  <div class="flex flex-col min-h-screen dark:bg-ocean-bg bg-mist-bg transition-colors duration-300">
     <Navbar />
-    <NuxtPage />
+    <main class="flex-1">
+      <NuxtPage />
+    </main>
     <Footer />
   </div>
 </template>

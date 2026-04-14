@@ -16,8 +16,11 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.9.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/dompurify": "^3.0.5",
+    "dompurify": "^3.3.3",
     "firebase": "^11.1.0",
     "firebase-admin": "^13.0.2",
+    "marked": "^18.0.0",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
     "request-ip": "^3.3.0",
@@ -25,6 +28,12 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@iconify-json/bx": "^1.2.3",
+    "@iconify-json/dashicons": "^1.2.1",
+    "@iconify-json/gg": "^1.2.2",
+    "@iconify-json/gridicons": "^1.2.4",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/nrk": "^1.2.7",
     "@types/request-ip": "^0.0.41"
   }
 }

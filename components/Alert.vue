@@ -1,32 +1,33 @@
 <script setup lang="ts">
-// Props
-const props = defineProps<{
-  show: boolean;
-  type: string;
-  message: string;
-}>();
-
-// Computed class based on the type
-const alertClass = computed(() =>
-  props.type === "success"
-    ? "fixed bottom-10 z-50 rounded-lg max-w-sm text-white bg-purple-500 dark:bg-purple-600 font-medium inset-x-0 mx-auto"
-    : "fixed bottom-10 z-50 rounded-lg max-w-sm text-white bg-red-500 font-medium inset-x-0 mx-auto"
-);
+const props = defineProps<{ show: boolean; type: string; message: string }>()
 </script>
 
 <template>
-  <div v-if="show" :class="alertClass">
-    <div class="px-4 py-3 leading-normal flex items-center justify-center">
-      <div class="flex justify-center">
+  <Transition name="slide-up">
+    <div
+      v-if="show"
+      class="fixed bottom-8 inset-x-0 mx-auto z-[9999] flex justify-center px-4"
+    >
+      <div
+        :class="[
+          'inline-flex items-center gap-3 px-5 py-3 rounded-2xl text-sm font-medium shadow-lg backdrop-blur-xl border',
+          type === 'success'
+            ? 'dark:bg-ocean-surface/90 bg-white/90 dark:border-teal-400/30 border-teal-600/30 dark:text-teal-400 text-teal-600'
+            : 'dark:bg-ocean-surface/90 bg-white/90 dark:border-red-400/30 border-red-500/30 dark:text-red-400 text-red-600'
+        ]"
+      >
         <Icon
-          name="mdi:emoticon-happy-outline"
-          v-if="type === 'success'"
-          class="text-xl mt-0.5"
+          :name="type === 'success' ? 'mdi:check-circle-outline' : 'mdi:alert-circle-outline'"
+          class="text-lg flex-shrink-0"
         />
-        <Icon v-else name="mdi:information" class="text-xl mt-0.5" />
-
-        <p class="ml-4 text-center">{{ message }}</p>
+        <span>{{ message }}</span>
       </div>
     </div>
-  </div>
+  </Transition>
 </template>
+
+<style scoped>
+.slide-up-enter-active, .slide-up-leave-active { transition: all 0.3s cubic-bezier(0.16,1,0.3,1); }
+.slide-up-enter-from { opacity: 0; transform: translateY(16px); }
+.slide-up-leave-to   { opacity: 0; transform: translateY(16px); }
+</style>
