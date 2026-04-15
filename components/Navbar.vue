@@ -236,6 +236,7 @@ async function handleSignOut() {
       </div>
 
       <!-- Mobile menu -->
+      <Transition name="mobile-menu">
       <nav
         v-if="menuOpen"
         class="md:hidden py-3 border-t dark:border-teal-400/10 border-teal-600/10 flex flex-col gap-1"
@@ -286,6 +287,7 @@ async function handleSignOut() {
           </button>
         </div>
       </nav>
+      </Transition>
     </div>
   </header>
 </template>

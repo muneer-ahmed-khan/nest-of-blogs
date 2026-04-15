@@ -102,7 +102,7 @@ function getTags(article: any): string[] {
         v-for="(article, index) in rest"
         :key="(article as any)._path + index"
         :to="`/blogs/${getSlug(article as any)}`"
-        class="blog-card no-underline"
+        :class="['blog-card', 'no-underline', 'animate-fade-up-in', `stagger-${Math.min(index + 1, 6)}`]"
       >
         <!-- Card visual header -->
         <div class="h-32 dark:bg-ocean-surface2 bg-mist-surface2 flex items-center justify-center relative overflow-hidden flex-shrink-0">

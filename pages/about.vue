@@ -94,14 +94,14 @@ useHead({
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div
-          v-for="category in [
+          v-for="(category, index) in [
             { label: 'Backend', icon: 'mdi:server', color: 'teal', items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI'] },
             { label: 'Frontend', icon: 'mdi:monitor-dashboard', color: 'amber', items: ['Vue.js', 'Nuxt.js', 'TypeScript', 'Tailwind CSS'] },
             { label: 'Databases', icon: 'mdi:database', color: 'teal', items: ['MongoDB', 'PostgreSQL', 'Redis', 'Firebase'] },
             { label: 'Tools & Cloud', icon: 'mdi:cloud-outline', color: 'amber', items: ['Docker', 'Git', 'Vercel', 'LLMs / AI'] },
           ]"
           :key="category.label"
-          class="rounded-2xl border dark:border-teal-400/12 border-teal-600/12 dark:bg-ocean-surface/60 bg-white/80 p-5"
+          :class="['rounded-2xl border dark:border-teal-400/12 border-teal-600/12 dark:bg-ocean-surface/60 bg-white/80 p-5 animate-fade-up-in', `stagger-${index + 1}`]"
         >
           <div class="flex items-center gap-2 mb-3">
             <Icon :name="category.icon" :class="category.color === 'teal' ? 'dark:text-teal-400 text-teal-600' : 'text-amber-400 dark:text-amber-400 text-amber-600'" />

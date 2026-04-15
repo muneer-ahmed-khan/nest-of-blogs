@@ -73,9 +73,9 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
             'inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200',
             activeFilter === f.id
               ? f.id === 'express'
-                ? 'bg-amber-400 border-amber-400 text-gray-900'
-                : 'bg-teal-400 dark:bg-teal-400 border-teal-400 text-gray-900'
-              : 'dark:border-teal-400/20 border-teal-600/20 dark:text-gray-400 text-gray-500 hover:dark:border-teal-400/50 hover:border-teal-600/50 hover:dark:text-teal-400 hover:text-teal-600'
+                ? 'bg-amber-400 border-amber-400 text-gray-900 scale-105 shadow-md'
+                : 'bg-teal-400 dark:bg-teal-400 border-teal-400 text-gray-900 scale-105 shadow-md'
+              : 'dark:border-teal-400/20 border-teal-600/20 dark:text-gray-400 text-gray-500 hover:dark:border-teal-400/50 hover:border-teal-600/50 hover:dark:text-teal-400 hover:text-teal-600 scale-100'
           ]"
         >
           {{ f.label }}
@@ -148,7 +148,7 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
           v-for="(post, i) in rest"
           :key="post.slug"
           :to="`/series/${post.slug}`"
-          class="blog-card no-underline"
+          :class="['blog-card', 'no-underline', 'animate-fade-up-in', `stagger-${Math.min(i + 1, 6)}`]"
         >
           <!-- Card visual -->
           <div class="h-32 dark:bg-ocean-surface2 bg-mist-surface2 flex items-center justify-center relative overflow-hidden flex-shrink-0">

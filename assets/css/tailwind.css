@@ -8,6 +8,16 @@
 @layer base {
   html { scroll-behavior: smooth; }
 
+  /* ── Respect OS-level reduced-motion preference globally ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
     @apply font-sans antialiased;
     background-color: #d0ede8;
@@ -166,9 +176,43 @@ textarea::-webkit-scrollbar { width: 0; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-up { animation: fade-up 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-up   { animation: fade-up 0.55s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-fade-up-2 { animation: fade-up 0.55s cubic-bezier(0.16,1,0.3,1) 0.12s both; }
 .animate-fade-up-3 { animation: fade-up 0.55s cubic-bezier(0.16,1,0.3,1) 0.24s both; }
+
+/* ── Staggered card entrance ─────────────────────────────────────── */
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up-in { animation: fade-up-in 0.42s cubic-bezier(0.16,1,0.3,1) both; }
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.10s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.20s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.30s; }
+
+/* ── Page transitions ────────────────────────────────────────────── */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.page-enter-from { opacity: 0; transform: translateY(6px); }
+.page-leave-to   { opacity: 0; transform: translateY(-6px); }
+
+/* ── Mobile menu transition ──────────────────────────────────────── */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  overflow: hidden;
+}
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
 
 /* ─── Shimmer effect ────────────────────────────────────────────── */
 .shimmer {

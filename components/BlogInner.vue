@@ -28,7 +28,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
     <div class="flex-1 min-w-0">
 
       <!-- Header image (real) -->
-      <div v-if="article?.headerImage" class="relative overflow-hidden rounded-2xl mb-10 border dark:border-teal-400/15 border-teal-600/15">
+      <div v-if="article?.headerImage" class="relative overflow-hidden rounded-2xl mb-10 border dark:border-teal-400/15 border-teal-600/15 animate-fade-up-in stagger-1">
         <img
           class="object-cover w-full h-56 sm:h-72"
           :src="article.headerImage"
@@ -40,7 +40,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
       <!-- Header placeholder (no image) -->
       <div
         v-else
-        class="relative overflow-hidden rounded-2xl mb-10 border dark:border-teal-400/15 border-teal-600/15 h-56 sm:h-64 flex items-center justify-center dark:bg-ocean-surface2 bg-mist-surface2"
+        class="relative overflow-hidden rounded-2xl mb-10 border dark:border-teal-400/15 border-teal-600/15 h-56 sm:h-64 flex items-center justify-center dark:bg-ocean-surface2 bg-mist-surface2 animate-fade-up-in stagger-1"
       >
         <!-- Gradient overlay -->
         <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(45,212,191,0.07) 0%, rgba(251,191,36,0.04) 100%);"></div>
@@ -75,13 +75,13 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
         </div>
 
         <!-- Title -->
-        <h1 class="font-heading text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 leading-tight tracking-tight mb-4">
+        <h1 class="font-heading text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 leading-tight tracking-tight mb-4 animate-fade-up-in stagger-2">
           {{ article?.title }}
         </h1>
 
         <!-- Meta bar -->
         <div
-          class="inline-flex items-center flex-wrap gap-5 px-5 py-3 rounded-xl border dark:border-teal-400/15 border-teal-600/15 dark:bg-ocean-surface bg-mist-surface2 mb-8 text-sm"
+          class="inline-flex items-center flex-wrap gap-5 px-5 py-3 rounded-xl border dark:border-teal-400/15 border-teal-600/15 dark:bg-ocean-surface bg-mist-surface2 mb-8 text-sm animate-fade-up-in stagger-3"
         >
           <span class="flex items-center gap-1.5 dark:text-gray-400 text-gray-500">
             <Icon name="mdi:clock-outline" class="dark:text-teal-400 text-teal-600 text-xs" />

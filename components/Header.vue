@@ -74,7 +74,7 @@ defineProps({
         </div>
 
         <!-- Right: floating terminal card -->
-        <div class="flex-shrink-0 w-full max-w-sm lg:max-w-md animate-fade-up-3">
+        <div class="flex-shrink-0 w-full max-w-sm lg:max-w-md animate-fade-up-3 animate-float">
           <div
             class="rounded-2xl border dark:border-teal-400/18 border-teal-600/18 overflow-hidden relative"
             style="background: #0a1a20; box-shadow: 0 24px 64px rgba(45,212,191,0.12);"
