@@ -105,7 +105,7 @@ function scrollTo(id: string) {
             <div class="h-10 rounded-lg shimmer w-1/2 mb-8"></div>
             <div class="h-14 rounded-xl shimmer w-96"></div>
           </div>
-          <div class="flex gap-12 items-start">
+          <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
             <div class="flex-1 space-y-4">
               <div v-for="n in 8" :key="n">
                 <div class="space-y-2 mb-6">
@@ -188,7 +188,7 @@ function scrollTo(id: string) {
           </header>
 
           <!-- Layout -->
-          <div class="flex gap-12 items-start pt-10">
+          <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start pt-10">
 
             <!-- Article content -->
             <article

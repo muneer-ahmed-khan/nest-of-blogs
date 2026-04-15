@@ -39,7 +39,7 @@ defineProps({
           </div>
 
           <h1
-            class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight dark:text-white text-gray-900 mb-6 animate-fade-up-2"
+            class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight dark:text-white text-gray-900 mb-6 animate-fade-up-2"
           >
             Code.<br />
             <span

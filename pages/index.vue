@@ -67,7 +67,7 @@ useHead({
 
         <!-- Banner card -->
         <div
-          class="relative rounded-2xl border dark:border-teal-400/18 border-teal-600/18 overflow-hidden mb-8 p-8 md:p-12"
+          class="relative rounded-2xl border dark:border-teal-400/18 border-teal-600/18 overflow-hidden mb-8 p-5 sm:p-8 md:p-12"
           style="background: linear-gradient(135deg, rgba(45,212,191,0.06) 0%, rgba(251,191,36,0.03) 100%);"
         >
           <!-- Gradient bar -->

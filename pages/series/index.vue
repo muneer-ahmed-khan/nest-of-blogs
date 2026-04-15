@@ -31,7 +31,7 @@ useHead({ link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }] })
             From GitHub
           </span>
         </div>
-        <h1 class="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight dark:text-white text-gray-900 mb-5 animate-fade-up-2">
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight dark:text-white text-gray-900 mb-5 animate-fade-up-2">
           TypeScript<br />
           <span class="bg-clip-text text-transparent" style="background-image: linear-gradient(135deg,#2dd4bf,#fbbf24);">
             Series

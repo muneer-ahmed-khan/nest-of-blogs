@@ -42,7 +42,7 @@ onUnmounted(() => {
 const isDark = computed(() => colorMode.value === "dark");
 
 function toggleTheme() {
-  colorMode.value = isDark.value ? "light" : "dark";
+  colorMode.preference = isDark.value ? "light" : "dark";
 }
 
 function showAlert(msg: string, type: "success" | "failed") {
@@ -200,8 +200,8 @@ async function handleSignOut() {
             class="w-9 h-9 flex items-center justify-center rounded-xl border dark:border-teal-400/20 border-teal-600/20 dark:text-gray-300 text-gray-600 hover:dark:text-teal-400 hover:text-teal-600 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-all duration-200"
             :title="isDark ? 'Switch to light' : 'Switch to dark'"
           >
-            <Icon v-if="isDark" name="tabler:sun-filled" class="text-base" />
-            <Icon v-else name="ion:moon" class="text-base" />
+            <Icon v-if="isDark" name="mdi:weather-night" class="text-base" />
+            <Icon v-else name="tabler:sun-filled" class="text-base" />
           </button>
 
           <!-- Auth -->
@@ -263,6 +263,27 @@ async function handleSignOut() {
           <NuxtLink :to="`/topic/${topic}`" class="flex items-center gap-2 px-3 py-2.5 pl-6 rounded-xl text-sm dark:text-gray-400 text-gray-500 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
             {{ topic }}
           </NuxtLink>
+        </div>
+
+        <!-- Mobile auth -->
+        <div class="border-t dark:border-teal-400/10 border-teal-600/10 pt-2 mt-1">
+          <button
+            v-if="isLogin"
+            @click.stop="handleSignOut"
+            class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
+          >
+            <Icon name="mdi:logout" class="text-sm" />
+            Sign Out
+          </button>
+          <button
+            v-else
+            @click.stop="handleSignIn"
+            class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+            style="color: #2dd4bf;"
+          >
+            <Icon name="dashicons:googleplus" class="text-base" />
+            Sign In with Google
+          </button>
         </div>
       </nav>
     </div>

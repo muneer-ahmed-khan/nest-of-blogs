@@ -43,7 +43,7 @@ html:not(.dark) ::-webkit-scrollbar-thumb { background: #0d9488; }
 textarea::-webkit-scrollbar { width: 0; }
 
 /* ─── TOC responsive ────────────────────────────────────────────── */
-@media (max-width: 1180px) {
+@media (max-width: 1023px) {
   .toc { display: none; }
 }
 .toc-inner {

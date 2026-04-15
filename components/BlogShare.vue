@@ -17,7 +17,7 @@ const twitterUrl = computed(
 </script>
 
 <template>
-  <div class="flex items-center justify-center gap-3 py-8">
+  <div class="flex flex-wrap items-center justify-center gap-3 py-8">
     <span class="text-sm dark:text-gray-500 text-gray-400 font-mono tracking-wide uppercase text-xs font-semibold">Share</span>
 
     <a

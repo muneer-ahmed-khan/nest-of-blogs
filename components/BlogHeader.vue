@@ -36,7 +36,7 @@ function getTags(article: any): string[] {
 
       <div class="grid md:grid-cols-2">
         <!-- Body -->
-        <div class="p-8 md:p-12 flex flex-col justify-center dark:bg-ocean-surface bg-white">
+        <div class="p-5 sm:p-8 md:p-12 flex flex-col justify-center dark:bg-ocean-surface bg-white">
           <div class="flex items-center gap-2 mb-5">
             <span class="font-mono text-xs font-semibold tracking-widest uppercase" style="color: #2dd4bf;">
               <Icon name="mdi:rss" class="text-xs mr-1" />Latest Post

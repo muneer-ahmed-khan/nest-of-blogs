@@ -22,7 +22,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
   <!-- Scroll progress -->
   <div class="scroll-progress-bar" :style="{ width: scrollPct + '%' }"></div>
 
-  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 flex gap-12 items-start">
+  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
     <!-- ── Main content ──────────────────────────────────────────── -->
     <div class="flex-1 min-w-0">
