@@ -7,6 +7,8 @@ const tags = computed(() =>
   article?.tags?.split(" ").map((t: string) => t.trim()).filter(Boolean) ?? []
 );
 
+const tocMobileOpen = ref(false);
+
 // Scroll progress
 const scrollPct = ref(0);
 function onScroll() {
@@ -104,6 +106,35 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
         </div>
 
         <hr class="border-0 border-t dark:border-teal-400/10 border-teal-600/10 mb-8" />
+
+        <!-- Mobile TOC (lg:hidden — sidebar handles desktop) -->
+        <div v-if="article.body?.toc?.links?.length" class="lg:hidden mb-8">
+          <button
+            @click="tocMobileOpen = !tocMobileOpen"
+            class="w-full flex items-center justify-between px-4 py-3 rounded-xl border dark:border-teal-400/15 border-teal-600/15 dark:bg-ocean-surface bg-mist-surface2 transition-colors hover:dark:bg-teal-400/8 hover:bg-teal-600/8"
+          >
+            <span class="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest dark:text-teal-400 text-teal-600">
+              <Icon name="mdi:format-list-bulleted" class="text-sm" />
+              On this page
+            </span>
+            <Icon
+              name="mdi:chevron-down"
+              :class="['text-base dark:text-teal-400 text-teal-600 opacity-70 transition-transform duration-200', tocMobileOpen ? 'rotate-180' : '']"
+            />
+          </button>
+          <Transition
+            enter-active-class="transition-all duration-200 ease-out overflow-hidden"
+            enter-from-class="opacity-0 max-h-0"
+            enter-to-class="opacity-100 max-h-[600px]"
+            leave-active-class="transition-all duration-150 ease-in overflow-hidden"
+            leave-from-class="opacity-100 max-h-[600px]"
+            leave-to-class="opacity-0 max-h-0"
+          >
+            <div v-if="tocMobileOpen" class="mt-1 rounded-xl border dark:border-teal-400/15 border-teal-600/15 dark:bg-ocean-surface bg-white overflow-hidden">
+              <TableOfContent :toc="article.body?.toc" />
+            </div>
+          </Transition>
+        </div>
 
         <!-- Article body -->
         <article class="prose prose-lg dark:prose-dark max-w-none article-body

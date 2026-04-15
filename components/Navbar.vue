@@ -9,9 +9,10 @@ const userStore  = useUserStore();
 const articles   = await queryContent().find();
 const topics     = [...new Set(articles.map((a: any) => a.topic).filter(Boolean))];
 
-const scrolled      = ref(false);
-const menuOpen      = ref(false);
-const topicsOpen    = ref(false);
+const scrolled           = ref(false);
+const menuOpen           = ref(false);
+const topicsOpen         = ref(false);
+const topicsMobileOpen   = ref(false);
 const topicsDropdown = ref<HTMLElement | null>(null);
 const isLogin    = ref(false);
 const viewAlert  = ref(false);
@@ -260,10 +261,41 @@ async function handleSignOut() {
           <Icon name="mdi:briefcase-outline" /> Portfolio
           <Icon name="mdi:arrow-top-right" class="text-xs opacity-50" />
         </a>
-        <div v-for="topic in topics" :key="topic">
-          <NuxtLink :to="`/topic/${topic}`" class="flex items-center gap-2 px-3 py-2.5 pl-6 rounded-xl text-sm dark:text-gray-400 text-gray-500 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
-            {{ topic }}
-          </NuxtLink>
+        <!-- Topics accordion -->
+        <div>
+          <button
+            @click.stop="topicsMobileOpen = !topicsMobileOpen"
+            class="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
+          >
+            <span class="flex items-center gap-2">
+              <Icon name="gridicons:menus" class="text-base" />
+              Topics
+            </span>
+            <Icon
+              name="mdi:chevron-down"
+              :class="['text-base opacity-60 transition-transform duration-200', topicsMobileOpen ? 'rotate-180' : '']"
+            />
+          </button>
+          <Transition
+            enter-active-class="transition-all duration-200 ease-out overflow-hidden"
+            enter-from-class="opacity-0 max-h-0"
+            enter-to-class="opacity-100 max-h-96"
+            leave-active-class="transition-all duration-150 ease-in overflow-hidden"
+            leave-from-class="opacity-100 max-h-96"
+            leave-to-class="opacity-0 max-h-0"
+          >
+            <div v-if="topicsMobileOpen" class="mt-1 ml-3 pl-3 border-l dark:border-teal-400/20 border-teal-600/20 flex flex-col gap-0.5">
+              <NuxtLink
+                v-for="topic in topics"
+                :key="topic"
+                :to="`/topic/${topic}`"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm dark:text-gray-400 text-gray-500 hover:dark:text-teal-400 hover:text-teal-600 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 dark:bg-teal-400/30 bg-teal-600/30"></span>
+                {{ topic }}
+              </NuxtLink>
+            </div>
+          </Transition>
         </div>
 
         <!-- Mobile auth -->
