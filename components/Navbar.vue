@@ -3,23 +3,24 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { useUserStore } from "~/store";
 
 const { $auth, $provider } = useNuxtApp();
-const colorMode  = useColorMode();
-const userStore  = useUserStore();
+const colorMode = useColorMode();
+const userStore = useUserStore();
 
-const articles   = await queryContent().find();
-const topics     = [...new Set(articles.map((a: any) => a.topic).filter(Boolean))];
+const articles = await queryContent().find();
+const topics   = [...new Set(articles.map((a: any) => a.topic).filter(Boolean))];
 
-const scrolled           = ref(false);
-const menuOpen           = ref(false);
-const topicsOpen         = ref(false);
-const topicsMobileOpen   = ref(false);
-const topicsDropdown = ref<HTMLElement | null>(null);
-const isLogin    = ref(false);
-const viewAlert  = ref(false);
-const alertMsg   = ref("");
-const alertType  = ref("");
+const scrolled         = ref(false);
+const menuOpen         = ref(false);
+const topicsOpen       = ref(false);
+const topicsMobileOpen = ref(false);
+const topicsDropdown   = ref<HTMLElement | null>(null);
+const viewAlert        = ref(false);
+const alertMsg         = ref("");
+const alertType        = ref("");
 
-function onScroll() { scrolled.value = window.scrollY > 48; }
+function onScroll() {
+  scrolled.value = window.scrollY > 48;
+}
 
 function onDocumentClick(e: MouseEvent) {
   if (topicsDropdown.value && !topicsDropdown.value.contains(e.target as Node)) {
@@ -32,9 +33,10 @@ onMounted(() => {
   document.addEventListener("click", onDocumentClick);
   const stored = localStorage.getItem("user");
   if (stored) {
-    try { userStore.setUser(JSON.parse(stored)); isLogin.value = true; } catch {}
+    try { userStore.setUser(JSON.parse(stored)); } catch {}
   }
 });
+
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
   document.removeEventListener("click", onDocumentClick);
@@ -47,19 +49,27 @@ function toggleTheme() {
 }
 
 function showAlert(msg: string, type: "success" | "failed") {
-  alertMsg.value = msg; alertType.value = type; viewAlert.value = true;
+  alertMsg.value = msg;
+  alertType.value = type;
+  viewAlert.value = true;
   setTimeout(() => (viewAlert.value = false), 2500);
 }
 
 async function handleSignIn() {
   try {
     const res = await signInWithPopup($auth, $provider);
-    const u = { name: res.user.displayName, photo: res.user.photoURL, token: (res.user as any).accessToken, uid: res.user.uid };
+    const u = {
+      name:  res.user.displayName,
+      photo: res.user.photoURL,
+      token: (res.user as any).accessToken,
+      uid:   res.user.uid,
+    };
     localStorage.setItem("user", JSON.stringify(u));
     userStore.setUser(u);
-    isLogin.value = true;
     showAlert(`Welcome, ${res.user.displayName}!`, "success");
-  } catch { showAlert("Sign-in failed", "failed"); }
+  } catch {
+    showAlert("Sign-in failed", "failed");
+  }
 }
 
 async function handleSignOut() {
@@ -67,22 +77,22 @@ async function handleSignOut() {
     await signOut($auth);
     localStorage.removeItem("user");
     userStore.clearUser();
-    isLogin.value = false;
     showAlert("Signed out. See you soon!", "success");
-  } catch { showAlert("Sign-out failed", "failed"); }
+  } catch {
+    showAlert("Sign-out failed", "failed");
+  }
 }
 </script>
 
 <template>
   <Alert :show="viewAlert" :type="alertType" :message="alertMsg" />
 
-  <!-- Fixed navbar -->
   <header
     :class="[
       'fixed w-full z-50 transition-all duration-300',
       scrolled
         ? 'dark:bg-ocean-bg/90 bg-mist-bg/90 backdrop-blur-xl border-b dark:border-teal-400/10 border-teal-600/10 shadow-card'
-        : 'bg-transparent'
+        : 'bg-transparent',
     ]"
   >
     <div class="container mx-auto px-6">
@@ -115,7 +125,7 @@ async function handleSignOut() {
                 'flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer',
                 topicsOpen
                   ? 'dark:text-teal-400 text-teal-600 dark:bg-teal-400/10 bg-teal-600/10'
-                  : 'dark:text-gray-300 text-gray-600 hover:dark:text-white hover:text-gray-900 hover:dark:bg-teal-400/8 hover:bg-teal-600/8'
+                  : 'dark:text-gray-300 text-gray-600 hover:dark:text-white hover:text-gray-900 hover:dark:bg-teal-400/8 hover:bg-teal-600/8',
               ]"
             >
               <Icon name="gridicons:menus" class="text-base" />
@@ -139,14 +149,12 @@ async function handleSignOut() {
                 class="absolute top-full left-0 mt-2 w-52 rounded-2xl border dark:border-teal-400/15 border-teal-600/15 dark:bg-ocean-surface bg-white z-50 overflow-hidden origin-top"
                 style="box-shadow: 0 16px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(45,212,191,0.06);"
               >
-                <!-- Panel header -->
                 <div class="px-4 py-2.5 border-b dark:border-teal-400/10 border-teal-600/10 flex items-center gap-2">
                   <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
                   <span class="font-mono text-xs font-semibold uppercase tracking-widest dark:text-teal-400 text-teal-600">
                     Browse Topics
                   </span>
                 </div>
-                <!-- Topic pills -->
                 <div class="p-2 grid grid-cols-2 gap-1">
                   <NuxtLink
                     v-for="topic in topics"
@@ -207,7 +215,7 @@ async function handleSignOut() {
 
           <!-- Auth -->
           <button
-            v-if="isLogin"
+            v-if="userStore.isLoggedIn"
             @click="handleSignOut"
             class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl border dark:border-teal-400/20 border-teal-600/20 text-sm font-medium dark:text-gray-300 text-gray-600 hover:dark:text-teal-400 hover:text-teal-600 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-all duration-200"
           >
@@ -217,10 +225,7 @@ async function handleSignOut() {
           <button
             v-else
             @click="handleSignIn"
-            class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200"
-            style="background: rgba(45,212,191,0.12); border: 1px solid rgba(45,212,191,0.3); color: #2dd4bf;"
-            onmouseover="this.style.background='rgba(45,212,191,0.2)'"
-            onmouseout="this.style.background='rgba(45,212,191,0.12)'"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-[rgba(45,212,191,0.12)] hover:bg-[rgba(45,212,191,0.2)] border border-[rgba(45,212,191,0.3)] text-teal-400"
           >
             <Icon name="dashicons:googleplus" class="text-base" />
             Sign In
@@ -238,87 +243,87 @@ async function handleSignOut() {
 
       <!-- Mobile menu -->
       <Transition name="mobile-menu">
-      <nav
-        v-if="menuOpen"
-        class="md:hidden py-3 border-t dark:border-teal-400/10 border-teal-600/10 flex flex-col gap-1"
-        @click="menuOpen = false"
-      >
-        <NuxtLink to="/" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
-          <Icon name="bx:terminal" /> Latest
-        </NuxtLink>
-        <NuxtLink to="/series" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
-          <Icon name="mdi:github" /> Series
-        </NuxtLink>
-        <NuxtLink to="/about" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
-          <Icon name="gg:profile" /> About
-        </NuxtLink>
-        <a
-          href="https://muneer-ahmed.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors"
+        <nav
+          v-if="menuOpen"
+          class="md:hidden py-3 border-t dark:border-teal-400/10 border-teal-600/10 flex flex-col gap-1"
+          @click="menuOpen = false"
         >
-          <Icon name="mdi:briefcase-outline" /> Portfolio
-          <Icon name="mdi:arrow-top-right" class="text-xs opacity-50" />
-        </a>
-        <!-- Topics accordion -->
-        <div>
-          <button
-            @click.stop="topicsMobileOpen = !topicsMobileOpen"
-            class="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
+          <NuxtLink to="/" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
+            <Icon name="bx:terminal" /> Latest
+          </NuxtLink>
+          <NuxtLink to="/series" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
+            <Icon name="mdi:github" /> Series
+          </NuxtLink>
+          <NuxtLink to="/about" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors">
+            <Icon name="gg:profile" /> About
+          </NuxtLink>
+          <a
+            href="https://muneer-ahmed.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors"
           >
-            <span class="flex items-center gap-2">
-              <Icon name="gridicons:menus" class="text-base" />
-              Topics
-            </span>
-            <Icon
-              name="mdi:chevron-down"
-              :class="['text-base opacity-60 transition-transform duration-200', topicsMobileOpen ? 'rotate-180' : '']"
-            />
-          </button>
-          <Transition
-            enter-active-class="transition-all duration-200 ease-out overflow-hidden"
-            enter-from-class="opacity-0 max-h-0"
-            enter-to-class="opacity-100 max-h-96"
-            leave-active-class="transition-all duration-150 ease-in overflow-hidden"
-            leave-from-class="opacity-100 max-h-96"
-            leave-to-class="opacity-0 max-h-0"
-          >
-            <div v-if="topicsMobileOpen" class="mt-1 ml-3 pl-3 border-l dark:border-teal-400/20 border-teal-600/20 flex flex-col gap-0.5">
-              <NuxtLink
-                v-for="topic in topics"
-                :key="topic"
-                :to="`/topic/${topic}`"
-                class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm dark:text-gray-400 text-gray-500 hover:dark:text-teal-400 hover:text-teal-600 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors"
-              >
-                <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 dark:bg-teal-400/30 bg-teal-600/30"></span>
-                {{ topic }}
-              </NuxtLink>
-            </div>
-          </Transition>
-        </div>
+            <Icon name="mdi:briefcase-outline" /> Portfolio
+            <Icon name="mdi:arrow-top-right" class="text-xs opacity-50" />
+          </a>
 
-        <!-- Mobile auth -->
-        <div class="border-t dark:border-teal-400/10 border-teal-600/10 pt-2 mt-1">
-          <button
-            v-if="isLogin"
-            @click.stop="handleSignOut"
-            class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
-          >
-            <Icon name="mdi:logout" class="text-sm" />
-            Sign Out
-          </button>
-          <button
-            v-else
-            @click.stop="handleSignIn"
-            class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors"
-            style="color: #2dd4bf;"
-          >
-            <Icon name="dashicons:googleplus" class="text-base" />
-            Sign In with Google
-          </button>
-        </div>
-      </nav>
+          <!-- Topics accordion -->
+          <div>
+            <button
+              @click.stop="topicsMobileOpen = !topicsMobileOpen"
+              class="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
+            >
+              <span class="flex items-center gap-2">
+                <Icon name="gridicons:menus" class="text-base" />
+                Topics
+              </span>
+              <Icon
+                name="mdi:chevron-down"
+                :class="['text-base opacity-60 transition-transform duration-200', topicsMobileOpen ? 'rotate-180' : '']"
+              />
+            </button>
+            <Transition
+              enter-active-class="transition-all duration-200 ease-out overflow-hidden"
+              enter-from-class="opacity-0 max-h-0"
+              enter-to-class="opacity-100 max-h-96"
+              leave-active-class="transition-all duration-150 ease-in overflow-hidden"
+              leave-from-class="opacity-100 max-h-96"
+              leave-to-class="opacity-0 max-h-0"
+            >
+              <div v-if="topicsMobileOpen" class="mt-1 ml-3 pl-3 border-l dark:border-teal-400/20 border-teal-600/20 flex flex-col gap-0.5">
+                <NuxtLink
+                  v-for="topic in topics"
+                  :key="topic"
+                  :to="`/topic/${topic}`"
+                  class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm dark:text-gray-400 text-gray-500 hover:dark:text-teal-400 hover:text-teal-600 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 no-underline transition-colors"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 dark:bg-teal-400/30 bg-teal-600/30"></span>
+                  {{ topic }}
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
+
+          <!-- Mobile auth -->
+          <div class="border-t dark:border-teal-400/10 border-teal-600/10 pt-2 mt-1">
+            <button
+              v-if="userStore.isLoggedIn"
+              @click.stop="handleSignOut"
+              class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-teal-400/8 hover:bg-teal-600/8 transition-colors"
+            >
+              <Icon name="mdi:logout" class="text-sm" />
+              Sign Out
+            </button>
+            <button
+              v-else
+              @click.stop="handleSignIn"
+              class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-teal-400 transition-colors"
+            >
+              <Icon name="dashicons:googleplus" class="text-base" />
+              Sign In with Google
+            </button>
+          </div>
+        </nav>
       </Transition>
     </div>
   </header>

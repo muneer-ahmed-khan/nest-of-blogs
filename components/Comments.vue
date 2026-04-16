@@ -88,10 +88,7 @@ fetchComments()
         >Reset</button>
         <button
           type="submit"
-          class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200"
-          style="background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);color:#2dd4bf;"
-          onmouseover="this.style.background='rgba(45,212,191,0.2)'"
-          onmouseout="this.style.background='rgba(45,212,191,0.12)'"
+          class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-[rgba(45,212,191,0.12)] hover:bg-[rgba(45,212,191,0.2)] border border-[rgba(45,212,191,0.3)] text-teal-400"
         >Post</button>
       </div>
     </form>

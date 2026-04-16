@@ -1,32 +1,24 @@
-// store/index.ts
 import { defineStore } from "pinia";
 
-interface User {
+export interface StoreUser {
   name: string | null;
   photo: string | null;
   token: string | null;
   uid: string | null;
 }
 
-interface State {
-  user: User | null;
-}
+export const useUserStore = defineStore("user", () => {
+  const user = ref<StoreUser | null>(null);
 
-export const useUserStore = defineStore("user", {
-  state: (): State => ({
-    user: null,
-  }),
+  const isLoggedIn = computed(() => !!user.value);
 
-  getters: {
-    isLoggedIn: (state) => !!state.user,
-  },
+  function setUser(newUser: StoreUser) {
+    user.value = newUser;
+  }
 
-  actions: {
-    setUser(user: User) {
-      this.user = user;
-    },
-    clearUser() {
-      this.user = null;
-    },
-  },
+  function clearUser() {
+    user.value = null;
+  }
+
+  return { user, isLoggedIn, setUser, clearUser };
 });

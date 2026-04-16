@@ -1,16 +1,19 @@
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  photo?: string;
-  [key: string]: any; // For any additional fields
-};
+interface AuthUser {
+  name: string | null;
+  photo: string | null;
+  token: string | null;
+  uid: string | null;
+}
 
-export const useCheckAuth = (): User | null => {
-  const user = localStorage.getItem("user");
-  if (user) {
-    return JSON.parse(user) as User;
+export const useCheckAuth = (): AuthUser | null => {
+  if (!import.meta.client) return null;
+
+  const raw = localStorage.getItem("user");
+  if (!raw) return null;
+
+  try {
+    return JSON.parse(raw) as AuthUser;
+  } catch {
+    return null;
   }
-
-  return null;
 };

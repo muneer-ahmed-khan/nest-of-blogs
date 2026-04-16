@@ -4,8 +4,8 @@ useSeoMeta({
   description: "Backend developer focused on Node.js, Express, and TypeScript. Writing about real problems, practical solutions, and systems that hold up in production.",
   ogTitle: "About Muneer | Backend Developer",
   ogDescription: "Backend developer focused on Node.js, Express, and TypeScript. Writing about real problems, practical solutions, and systems that hold up in production.",
-  ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/about-seo.png",
-  ogUrl: "https://muneer-ahmed.vercel.app/about",
+  ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public/about-seo.png",
+  ogUrl: "https://muneer-dev.vercel.app/about",
   twitterTitle: "About Muneer | Backend Developer",
   twitterCard: "summary_large_image",
   robots: "index, follow",
@@ -13,7 +13,7 @@ useSeoMeta({
 
 useHead({
   link: [
-    { rel: "canonical", href: "https://muneer-ahmed.vercel.app/about" },
+    { rel: "canonical", href: "https://muneer-dev.vercel.app/about" },
     { rel: "icon", type: "image/png", href: "/favicon.png" },
   ],
   htmlAttrs: { lang: "en" },

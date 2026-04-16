@@ -11,17 +11,17 @@ await fetchArticles(topicName);
 
 // Set up SEO meta information
 useSeoMeta({
-  title: `${topicName} - Tech Blogs and Articles`,
-  description: `Explore a variety of tech blogs and articles on ${topicName}, covering topics such as software development, web technologies, and more.`,
-  ogTitle: `${topicName} - Tech Blogs and Articles`,
-  ogDescription: `Explore a variety of tech blogs and articles on ${topicName}, covering topics such as software development, web technologies, and more.`,
+  title: `${topicName} Articles | muneer.dev`,
+  description: `All articles on ${topicName} — practical writing on backend development, from fundamentals to production patterns.`,
+  ogTitle: `${topicName} Articles | muneer.dev`,
+  ogDescription: `All articles on ${topicName} — practical writing on backend development, from fundamentals to production patterns.`,
   ogImage:
-    "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
-  ogUrl: `https://nest-of-blogs.vercel.app/topic/${topicName}`,
-  twitterTitle: `${topicName} - Tech Blogs and Articles`,
-  twitterDescription: `Explore a variety of tech blogs and articles on ${topicName}, covering topics such as software development, web technologies, and more.`,
+    "https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public/sc.png",
+  ogUrl: `https://muneer-dev.vercel.app/topic/${topicName}`,
+  twitterTitle: `${topicName} Articles | muneer.dev`,
+  twitterDescription: `All articles on ${topicName} — practical writing on backend development, from fundamentals to production patterns.`,
   twitterImage:
-    "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
+    "https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public/sc.png",
   twitterCard: "summary_large_image",
   robots: "index, follow",
 });
@@ -30,7 +30,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: `https://nest-of-blogs.vercel.app/topic/${topicName}`,
+      href: `https://muneer-dev.vercel.app/topic/${topicName}`,
     },
     { rel: "icon", type: "image/png", href: "/favicon.png" },
   ],

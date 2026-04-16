@@ -78,7 +78,7 @@ const topics = [...new Set(articles.map((a: any) => a.topic).filter(Boolean))];
 
       <!-- Bottom row -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs dark:text-gray-600 text-gray-400">
-        <span>© {{ year }} Muneer Ahmed Khan. All rights reserved.</span>
+        <span>© {{ year }} Muneer Ahmed. All rights reserved.</span>
         <span class="flex items-center gap-1.5">
           Built with
           <Icon name="mdi:vuejs" class="dark:text-teal-400 text-teal-600 text-sm" />

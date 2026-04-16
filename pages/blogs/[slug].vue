@@ -14,7 +14,7 @@ if (!article) {
 }
 
 const articleImageURL = article.headerImage
-  ? `https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public${article.headerImage}`
+  ? `https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public${article.headerImage}`
   : "";
 
 useSeoMeta({
@@ -23,7 +23,7 @@ useSeoMeta({
   ogTitle: article.title,
   ogDescription: article.abstract,
   ogImage: articleImageURL,
-  ogUrl: `https://nest-of-blogs.vercel.app/blogs/${articleSlug}`,
+  ogUrl: `https://muneer-dev.vercel.app/blogs/${articleSlug}`,
   twitterTitle: article.title,
   twitterDescription: article.abstract,
   twitterImage: articleImageURL,
@@ -33,7 +33,7 @@ useSeoMeta({
 
 useHead({
   link: [
-    { rel: "canonical", href: `https://nest-of-blogs.vercel.app/${articleSlug}` },
+    { rel: "canonical", href: `https://muneer-dev.vercel.app/${articleSlug}` },
     { rel: "icon", type: "image/png", href: "/favicon.png" },
   ],
   htmlAttrs: { lang: "en" },

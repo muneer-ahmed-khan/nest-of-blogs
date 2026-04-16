@@ -1,8 +1,8 @@
-# Nest of Blogs
+# muneer.dev
 
 A full-stack blogging platform built with **Nuxt 3**, featuring markdown-driven content, Google authentication, real-time comments & likes via Firebase, dark/light theming, and full mobile responsiveness.
 
-**Live:** [nest-of-blogs.vercel.app](https://nest-of-blogs.vercel.app/)
+**Live:** [muneer-dev.vercel.app](https://muneer-dev.vercel.app/)
 
 ---
 
@@ -114,10 +114,10 @@ headerImage: "/BL-1001/header.jpg" # relative to /public
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root (use `.env.example` as a template):
 
 ```env
-# Firebase client (public — safe to expose to browser)
+# Firebase client (public — exposed to the browser bundle)
 NUXT_PUBLIC_FIREBASE_API_KEY=
 NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
 NUXT_PUBLIC_FIREBASE_PROJECT_ID=
@@ -126,13 +126,13 @@ NUXT_PUBLIC_FIREBASE_SENDER_ID=
 NUXT_PUBLIC_FIREBASE_APP_ID=
 NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
 
-# Firebase Admin (private — server-side only, never exposed to client)
+# Firebase Admin (private — server-side only, never sent to the client)
 FIREBASE_PROJECT_ID=
 FIREBASE_CLIENT_EMAIL=
 FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
 
-> `FIREBASE_PRIVATE_KEY` must include literal `\n` characters. Wrap it in double quotes in `.env`.
+> `NUXT_FIREBASE_PRIVATE_KEY` must include literal `\n` characters. Wrap it in double quotes in `.env`.
 > Never commit `.env` — it is already in `.gitignore`.
 
 For Vercel deployment, add all variables in **Project → Settings → Environment Variables**.
@@ -143,8 +143,8 @@ For Vercel deployment, add all variables in **Project → Settings → Environme
 
 ```bash
 # 1. Clone
-git clone https://github.com/muneer-ahmed-khan/nest-of-blogs.git
-cd nest-of-blogs
+git clone https://github.com/muneer-ahmed-khan/muneer-dev.git
+cd muneer-dev
 
 # 2. Install dependencies
 npm install
@@ -184,10 +184,10 @@ npm run generate   # Static site generation
 | Method | Route | Description |
 |---|---|---|
 | `GET` | `/api/comments/[pid]` | Fetch comments for article `pid` |
-| `POST` | `/api/comments/post-comment` | Add a comment (requires auth token) |
-| `DELETE` | `/api/comments/delete-comment` | Delete a comment (requires auth token) |
-| `GET` | `/api/likes/[id]` | Get like count and user like status |
-| `POST` | `/api/likes/like-blog` | Toggle like on an article (requires auth token) |
+| `POST` | `/api/comments/post-comment` | Add a comment |
+| `DELETE` | `/api/comments/delete-comment` | Delete a comment |
+| `GET` | `/api/likes/[id]` | Get like count and current user's like status |
+| `POST` | `/api/likes/like-blog` | Toggle like on an article |
 
 ---
 
@@ -196,7 +196,7 @@ npm run generate   # Static site generation
 The app is deployed on **Vercel** via the Nuxt 3 Vercel preset.
 
 1. Push to `main` — Vercel auto-deploys.
-2. Ensure all environment variables are set in Vercel dashboard.
+2. Ensure all environment variables are set in the Vercel dashboard.
 3. The `vercel.json` at the project root handles routing.
 
 ---
@@ -212,4 +212,4 @@ The app is deployed on **Vercel** via the Nuxt 3 Vercel preset.
 
 ## License
 
-[MIT](LICENSE) — © Muneer Ahmed Khan
+[MIT](LICENSE) — © Muneer Ahmed

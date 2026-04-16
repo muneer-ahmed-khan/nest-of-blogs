@@ -17,18 +17,18 @@ useSeoMeta({
   description: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
   ogTitle: "muneer.dev | Node.js, Express and TypeScript Blog",
   ogDescription: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
-  ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
-  ogUrl: "https://nest-of-blogs.vercel.app/",
+  ogImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public/sc.png",
+  ogUrl: "https://muneer-dev.vercel.app/",
   twitterTitle: "muneer.dev | Node.js, Express and TypeScript Blog",
   twitterDescription: "Practical articles on Node.js, Express, and TypeScript. From core concepts to production patterns, written by a backend developer for developers.",
-  twitterImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/nest-of-blogs/master/public/sc.png",
+  twitterImage: "https://raw.githubusercontent.com/muneer-ahmed-khan/muneer-dev/master/public/sc.png",
   twitterCard: "summary_large_image",
   robots: "index, follow",
 });
 
 useHead({
   link: [
-    { rel: "canonical", href: "https://nest-of-blogs.vercel.app/" },
+    { rel: "canonical", href: "https://muneer-dev.vercel.app/" },
     { rel: "icon", type: "image/png", href: "/favicon.png" },
   ],
   htmlAttrs: { lang: "en" },
